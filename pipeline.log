@@ -1,0 +1,80 @@
+INFO:root:Starting pipeline
+INFO:root:Reading files from directory: /home/reddym00/data-engineer/data
+INFO:root:Reading file: shard_06.xml
+INFO:root:Reading file: shard_02.xml
+INFO:root:Reading file: shard_09.xml
+INFO:root:Reading file: shard_08.xml
+INFO:root:Reading file: shard_04.xml
+INFO:root:Reading file: shard_07.xml
+INFO:root:Reading file: shard_01.xml
+INFO:root:Reading file: shard_03.xml
+INFO:root:Reading file: shard_05.xml
+INFO:root:Reading file: shard_11.xml
+INFO:root:Reading file: shard_13.xml
+INFO:root:Reading file: shard_12.xml
+INFO:root:Reading file: shard_10.xml
+INFO:root:Finished reading 13 files from directory: /home/reddym00/data-engineer/data
+INFO:root:<------ Started parsing XML files ------->
+INFO:root:Parsing file: /home/reddym00/data-engineer/data/shard_06.xml
+INFO:root:Completed parsing file: /home/reddym00/data-engineer/data/shard_06.xml
+INFO:root:Parsing file: /home/reddym00/data-engineer/data/shard_02.xml
+INFO:root:Completed parsing file: /home/reddym00/data-engineer/data/shard_02.xml
+INFO:root:Parsing file: /home/reddym00/data-engineer/data/shard_09.xml
+INFO:root:Completed parsing file: /home/reddym00/data-engineer/data/shard_09.xml
+INFO:root:Parsing file: /home/reddym00/data-engineer/data/shard_08.xml
+INFO:root:Completed parsing file: /home/reddym00/data-engineer/data/shard_08.xml
+INFO:root:Parsing file: /home/reddym00/data-engineer/data/shard_04.xml
+INFO:root:Completed parsing file: /home/reddym00/data-engineer/data/shard_04.xml
+INFO:root:Parsing file: /home/reddym00/data-engineer/data/shard_07.xml
+INFO:root:Completed parsing file: /home/reddym00/data-engineer/data/shard_07.xml
+INFO:root:Parsing file: /home/reddym00/data-engineer/data/shard_01.xml
+INFO:root:Completed parsing file: /home/reddym00/data-engineer/data/shard_01.xml
+INFO:root:Parsing file: /home/reddym00/data-engineer/data/shard_03.xml
+INFO:root:Completed parsing file: /home/reddym00/data-engineer/data/shard_03.xml
+INFO:root:Parsing file: /home/reddym00/data-engineer/data/shard_05.xml
+INFO:root:Completed parsing file: /home/reddym00/data-engineer/data/shard_05.xml
+INFO:root:Parsing file: /home/reddym00/data-engineer/data/shard_11.xml
+INFO:root:Completed parsing file: /home/reddym00/data-engineer/data/shard_11.xml
+INFO:root:Parsing file: /home/reddym00/data-engineer/data/shard_13.xml
+ERROR:root:File /home/reddym00/data-engineer/data/shard_13.xml is not well-formed XML and will be skipped.
+INFO:root:Parsing file: /home/reddym00/data-engineer/data/shard_12.xml
+INFO:root:Completed parsing file: /home/reddym00/data-engineer/data/shard_12.xml
+INFO:root:Parsing file: /home/reddym00/data-engineer/data/shard_10.xml
+INFO:root:Completed parsing file: /home/reddym00/data-engineer/data/shard_10.xml
+INFO:root:<------Finished parsing all XML files ------->
+INFO:root:DataFrame is :    order_id            date_time       status    cost    technician                                parts
+0       103  2023-08-10T16:00:00    Completed  120.00  Mary Johnson    [(Brake Pad, 4), (Air Filter, 1)]
+1       102  2023-08-10T12:00:00    Completed   75.00   James Brown   [(Spark Plug, 4), (Oil Filter, 1)]
+2       104  2023-08-11T10:00:00  In Progress   45.00  Robert White                          [(Tire, 2)]
+3       102  2023-08-11T09:00:00  In Progress   85.00   James Brown  [(Fuel Filter, 1), (Air Filter, 1)]
+4       101  2023-08-10T12:30:00    Completed   60.00    Jane Smith   [(Air Filter, 1), (Oil Filter, 1)]
+5       101  2023-08-10T18:00:00     Reopened   65.00    Jane Smith                    [(Oil Filter, 1)]
+6       101  2023-08-10T10:00:00  In Progress   50.25    Jane Smith                    [(Air Filter, 1)]
+7       103  2023-08-10T14:00:00  In Progress  100.50  Mary Johnson                     [(Brake Pad, 2)]
+8       102  2023-08-10T13:00:00    Completed   80.00   James Brown  [(Spark Plug, 4), (Fuel Filter, 1)]
+9       101  2023-08-10T08:00:00     Received   40.00    Jane Smith                    [(Air Filter, 1)]
+10      103  2023-08-10T10:00:00     Received   90.00  Mary Johnson                     [(Brake Pad, 2)]
+11      104  2023-08-11T12:00:00    Completed  110.00  Robert White        [(Tire, 2), (Brake Fluid, 1)]
+INFO:root:Windowing data by datetime
+INFO:root:Finished windowing data by datetime
+INFO:root:Windows are : {'2023-08-10 00:00:00':                     order_id       status    cost    technician                                parts
+date_time                                                                                           
+2023-08-10 08:00:00      101     Received   40.00    Jane Smith                    [(Air Filter, 1)]
+2023-08-10 10:00:00      101  In Progress   50.25    Jane Smith                    [(Air Filter, 1)]
+2023-08-10 10:00:00      103     Received   90.00  Mary Johnson                     [(Brake Pad, 2)]
+2023-08-10 12:00:00      102    Completed   75.00   James Brown   [(Spark Plug, 4), (Oil Filter, 1)]
+2023-08-10 12:30:00      101    Completed   60.00    Jane Smith   [(Air Filter, 1), (Oil Filter, 1)]
+2023-08-10 13:00:00      102    Completed   80.00   James Brown  [(Spark Plug, 4), (Fuel Filter, 1)]
+2023-08-10 14:00:00      103  In Progress  100.50  Mary Johnson                     [(Brake Pad, 2)]
+2023-08-10 16:00:00      103    Completed  120.00  Mary Johnson    [(Brake Pad, 4), (Air Filter, 1)]
+2023-08-10 18:00:00      101     Reopened   65.00    Jane Smith                    [(Oil Filter, 1)], '2023-08-11 00:00:00':                     order_id       status    cost    technician                                parts
+date_time                                                                                           
+2023-08-11 09:00:00      102  In Progress   85.00   James Brown  [(Fuel Filter, 1), (Air Filter, 1)]
+2023-08-11 10:00:00      104  In Progress   45.00  Robert White                          [(Tire, 2)]
+2023-08-11 12:00:00      104    Completed  110.00  Robert White        [(Tire, 2), (Brake Fluid, 1)]}
+INFO:root:Processing data into RO format
+INFO:root:Finished processing data into RO format
+INFO:root:RO List is : [<__main__.RO object at 0x7fc380f0fee0>, <__main__.RO object at 0x7fc380f0f790>, <__main__.RO object at 0x7fc380f0fe50>, <__main__.RO object at 0x7fc380f0feb0>, <__main__.RO object at 0x7fc380f0f970>, <__main__.RO object at 0x7fc380f0fe20>, <__main__.RO object at 0x7fc380f0f7c0>, <__main__.RO object at 0x7fc380f0ff40>, <__main__.RO object at 0x7fc380f0f8e0>, <__main__.RO object at 0x7fc380f0f430>, <__main__.RO object at 0x7fc380f0f760>, <__main__.RO object at 0x7fc380f0fe80>]
+INFO:root:connected to sqlite database
+INFO:root:Writing data to SQLite database: ro_output.db
+ERROR:root:Error occurred: no such table: RO
